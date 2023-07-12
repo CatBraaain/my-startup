@@ -22,7 +22,7 @@ function HideWin($WinTitle){
     $ShowWindowAsync::ShowWindowAsync((Get-Process|Where-Object {$_.MainWindowTitle -like "*$WinTitle*"}).MainWindowHandle, 6)
 }
 
-RunasAsync "C:\Program Files\AutoHotkey\AutoHotkey.exe" ' -ArgumentList """C:\Program Files\AutoHotkey\AutoHotkey.ahk"""'
+RunasAsync "C:\Users\PRO\Documents\Projects\AutoHotkey\AutoHotkey.ahk"
 RunasAsync "C:\Program Files (x86)\MSI Afterburner\MSIAfterburner.exe"
 RunasAsync "Taskmgr.exe" -WinTitle "タスク マネージャー"
 HideWin "タスク マネージャー"

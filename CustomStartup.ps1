@@ -14,12 +14,12 @@
     }
 }
 
-RunAsync "C:\Program Files\AutoHotkey\Scripts\ScreenLock.ahk"
+RunAsync "C:\Users\PRO\Documents\Projects\AutoHotkey\Scripts\ScreenLock.ahk"
 RunAsync "C:\Program Files (x86)\PicPick\picpick.exe"
 RunAsync "C:\Program Files\obs-studio\bin\64bit\obs64.exe" -Arguments "--startreplaybuffer --minimize-to-tray"
 RunAsync "explorer.exe"
 RunAsync "C:\Program Files (x86)\Notepad++\notepad++.exe" -WinTitle "* - Notepad++"
-RunAsync "Code" -Arguments ' -ArgumentList "-n -g ""C:\Program Files\AutoHotkey"""' -WinTitle "*AutoHotkey - Visual Studio Code"
+RunAsync "Code" -Arguments ' -ArgumentList "-n -g ""C:\Users\PRO\Documents\Projects\AutoHotkey"""' -WinTitle "*AutoHotkey - Visual Studio Code"
 RunAsync "Code" -Arguments ' -ArgumentList "-n -g ""C:\Users\PRO\Documents\Projects\MyChromeExtension"""' -WinTitle "*MyChromeExtension - Visual Studio Code"
 RunAsync "Code" -Arguments ' -ArgumentList "-n -g ""C:\Users\PRO\Documents\Projects\SeleniumProject"""' -WinTitle "*SeleniumProject - Visual Studio Code"
 RunAsync "C:\Users\PRO\Documents\タスク管理.xlsm" -WinTitle "*タスク管理.xlsm*"
