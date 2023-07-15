@@ -2,16 +2,17 @@
     $command = "Start-Process -FilePath ""$FilePath"""
     $folderPath = $(Split-Path -Path $FilePath -Parent)
     if($folderPath -ne ""){$command = $command + " -WorkingDirectory ""$folderPath"""}
-    if($Arguments -ne $null){$command = $command + $Arguments}
+    if($ArgumentList -ne $null){$command = $command + " -ArgumentList ""$ArgumentList"""}
+    if($Options -ne $null){$command = $command + " $Options"}
 
     echo $command
     Invoke-Expression $command
 
-     if($WinTitle -ne $null){
-         While((Get-Process|Where-Object {$_.MainWindowTitle -like $WinTitle}) -eq $null){
-             SLEEP 0.5
+    if($WinTitle -ne $null){
+        While((Get-Process|Where-Object {$_.MainWindowTitle -like $WinTitle}) -eq $null){
+            SLEEP 0.5
         }
-     }
+    }
 }
 function HideWin($WinTitle){
     $Signature = @"
