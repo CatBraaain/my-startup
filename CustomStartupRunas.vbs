@@ -1,1 +1,3 @@
-CreateObject("WScript.Shell").Run "powershell C:\Users\PRO\Documents\Projects\CustomStartup\CustomStartupRunas.ps1", 0
+Set fso = CreateObject("Scripting.FileSystemObject")
+filePath =  fso.GetParentFolderName(WScript.ScriptFullName) & "\CustomStartupRunas.ps1"
+CreateObject("WScript.Shell").Run "powershell " & filePath, 0
