@@ -23,6 +23,7 @@ RunAsync "C:\Program Files (x86)\Notepad++\notepad++.exe" -WinTitle "* - Notepad
 RunAsync "Code" "C:\Users\PRO\Documents\Projects\AutoHotkey" -Options "-WindowStyle Hidden" -WinTitle "*AutoHotkey - Visual Studio Code"
 RunAsync "Code" "C:\Users\PRO\Documents\Projects\MyChromeExtension" -Options "-WindowStyle Hidden" -WinTitle "*MyChromeExtension - Visual Studio Code"
 RunAsync "Code" "C:\Users\PRO\Documents\Projects\SeleniumProject" -Options "-WindowStyle Hidden" -WinTitle "*SeleniumProject - Visual Studio Code"
+RunAsync "Code" "C:\Users\PRO\Documents\Projects\MyReminders" -Options "-WindowStyle Hidden" -WinTitle "*MyReminders - Visual Studio Code"
 RunAsync "C:\Users\PRO\Documents\タスク管理.xlsm" -WinTitle "*タスク管理.xlsm*"
 RunAsync "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" -WinTitle "* - Google Chrome"
 RunAsync "C:\Program Files\Google\Drive File Stream\launch.bat"
