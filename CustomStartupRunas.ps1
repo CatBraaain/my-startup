@@ -13,10 +13,19 @@
         }
      }
 }
+function HideWin($WinTitle){
+    $Signature = @"
+    [DllImport("user32.dll")]public static extern bool ShowWindowAsync(IntPtr hWnd, int nCmdShow);
+"@
 
-RunasAsync "C:\Program Files\AutoHotkey\AutoHotkey.exe" """""C:\Program Files\AutoHotkey\AutoHotkey.ahk"""""
+    $ShowWindowAsync = Add-Type -MemberDefinition $Signature -Name "Win32ShowWindowAsync" -Namespace Win32Functions -PassThru
+    $ShowWindowAsync::ShowWindowAsync((Get-Process|Where-Object {$_.MainWindowTitle -like "*$WinTitle*"}).MainWindowHandle, 6)
+}
+
+RunasAsync "C:\Program Files\AutoHotkey\AutoHotkey.exe" ' -ArgumentList """C:\Program Files\AutoHotkey\AutoHotkey.ahk"""'
 RunasAsync "C:\Program Files (x86)\MSI Afterburner\MSIAfterburner.exe"
 RunasAsync "Taskmgr.exe" -WinTitle "タスク マネージャー"
+HideWin "タスク マネージャー"
 exit
 
 # メモ
