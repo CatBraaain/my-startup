@@ -1,4 +1,4 @@
-﻿function RunAsync($FilePath,$ArgumentList,$Options,$WinTitle){
+﻿function RunAsync($FilePath,$ArgumentList,$Options,$WinTitle,$HideWin,$CloseWin){
     $command = "Start-Process -FilePath ""$FilePath"""
     $folderPath = $(Split-Path -Path $FilePath -Parent)
     if($folderPath -ne ""){$command = $command + " -WorkingDirectory ""$folderPath"""}
@@ -12,6 +12,17 @@
         While((Get-Process|Where-Object {$_.MainWindowTitle -like $WinTitle}) -eq $null){
             SLEEP 0.5
         }
+    }
+
+    if($HideWin){
+        $Signature = @"
+        [DllImport("user32.dll")]public static extern bool ShowWindowAsync(IntPtr hWnd, int nCmdShow);
+"@
+        $ShowWindowAsync = Add-Type -MemberDefinition $Signature -Name "Win32ShowWindowAsync" -Namespace Win32Functions -PassThru
+        $ShowWindowAsync::ShowWindowAsync((Get-Process|Where-Object {$_.MainWindowTitle -like "*$WinTitle*"}).MainWindowHandle, 6)
+    }
+    if($CloseWin){
+        (Get-Process|Where-Object {$_.MainWindowTitle -like $WinTitle}).CloseMainWindow()
     }
 }
 
