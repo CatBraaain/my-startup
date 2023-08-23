@@ -1,30 +1,4 @@
-﻿function RunAsync($FilePath,$ArgumentList,$Options,$WinTitle,$HideWin,$CloseWin){
-    $command = "Start-Process -FilePath ""$FilePath"""
-    $folderPath = $(Split-Path -Path $FilePath -Parent)
-    if($folderPath -ne ""){$command = $command + " -WorkingDirectory ""$folderPath"""}
-    if($ArgumentList -ne $null){$command = $command + " -ArgumentList ""$ArgumentList"""}
-    if($Options -ne $null){$command = $command + " $Options"}
-
-    echo $command
-    Invoke-Expression $command
-
-    if($WinTitle -ne $null){
-        While((Get-Process|Where-Object {$_.MainWindowTitle -like $WinTitle}) -eq $null){
-            SLEEP 0.5
-        }
-    }
-
-    if($HideWin){
-        $Signature = @"
-        [DllImport("user32.dll")]public static extern bool ShowWindowAsync(IntPtr hWnd, int nCmdShow);
-"@
-        $ShowWindowAsync = Add-Type -MemberDefinition $Signature -Name "Win32ShowWindowAsync" -Namespace Win32Functions -PassThru
-        $ShowWindowAsync::ShowWindowAsync((Get-Process|Where-Object {$_.MainWindowTitle -like "*$WinTitle*"}).MainWindowHandle, 6)
-    }
-    if($CloseWin){
-        (Get-Process|Where-Object {$_.MainWindowTitle -like $WinTitle}).CloseMainWindow()
-    }
-}
+﻿. ".\lib\RunAsync.psm1" | Out-Null
 
 RunAsync "C:\Projects\AutoHotkey\Scripts\ScreenLock.ahk"
 RunAsync "C:\Program Files\Google\Drive File Stream\launch.bat"
@@ -40,9 +14,4 @@ RunAsync "Code" "C:\Projects\MyChromeExtension" -Options "-WindowStyle Hidden" -
 # RunAsync "Code" "C:\Projects\GmailFilters" -Options "-WindowStyle Hidden" -WinTitle "*GmailFilters - Visual Studio Code"
 RunAsync "C:\Users\PRO\Documents\タスク管理.xlsm" -WinTitle "*タスク管理.xlsm*"
 RunAsync "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" -WinTitle "* - Google Chrome"
-RunAsync "C:\Users\PRO\AppData\Local\Programs\Rakuten\Rakuten Link.exe" -WinTitle "Rakuten Link" -CloseWin $True
-
-exit
-
-# メモ
-# Get-Process|Where-Object {$_.MainWindowTitle}|Format-Table MainWindowTitle
+RunAsync "C:\Users\PRO\AppData\Local\Programs\Rakuten\Rakuten Link.exe" -WinTitle "Rakuten Link" -CloseWin
