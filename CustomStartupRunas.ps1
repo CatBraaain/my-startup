@@ -29,6 +29,7 @@
 RunasAsync "C:\Projects\AutoHotkey\AutoHotkey.ahk"
 RunasAsync "C:\Program Files (x86)\MSI Afterburner\MSIAfterburner.exe"
 RunasAsync "Taskmgr.exe" -WinTitle "タスク マネージャー" -HideWin $True
+RunasAsync "C:\Projects\Windows File History\NetShare.bat"
 exit
 
 # メモ
