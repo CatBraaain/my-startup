@@ -19,8 +19,10 @@ function RunAsync {
     echo $command
     Invoke-Expression $command
 
-    if($WinTitle -ne $null){
-        While((Get-Process|Where-Object {$_.MainWindowTitle -like $WinTitle}) -eq $null){
+    $process = $null
+    $shouldWait = !!$WinTitle
+    if ($shouldWait) {
+        While (!($process = (Get-Process | ? {$_.MainWindowTitle -like $WinTitle}))) {
             SLEEP 0.5
         }
     }
@@ -32,10 +34,12 @@ function RunAsync {
     }
 
     if ($CloseWin) {
-        SLEEP 3
-        (Get-Process|Where-Object {$_.MainWindowTitle -like $WinTitle}).CloseMainWindow()
+        While ($process = (Get-Process | ? {$_.MainWindowTitle -like $WinTitle})) {
+            $process.CloseMainWindow() | Out-Null
+            SLEEP 2.0
+        }
     }
 }
 
 #メモ
-#Get-Process|Where-Object {$_.MainWindowTitle}|Format-Table MainWindowTitle
+#Get-Process | Where-Object {$_.MainWindowTitle} | Format-Table MainWindowTitle
