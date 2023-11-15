@@ -1,4 +1,4 @@
-﻿. ".\lib\RunAsync.psm1" | Out-Null
+﻿using module ".\lib\RunAsync.psm1"
 
 RunAsync "C:\Projects\AutoHotkey\Scripts\ScreenLock.ahk"
 RunAsync "C:\Program Files\Google\Drive File Stream\launch.bat"

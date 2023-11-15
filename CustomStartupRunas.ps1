@@ -1,4 +1,4 @@
-﻿. ".\lib\RunAsync.psm1" | Out-Null
+﻿using module ".\lib\RunAsync.psm1"
 
 RunAsync "C:\Projects\AutoHotkey\AutoHotkey.ahk"
 RunAsync "C:\Program Files (x86)\MSI Afterburner\MSIAfterburner.exe"
