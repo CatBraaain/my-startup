@@ -1,4 +1,5 @@
-﻿
+﻿using module ".\WindowController.psm1"
+
 function RunAsync {
     param (
         [Parameter(Mandatory)]
@@ -25,18 +26,17 @@ function RunAsync {
         While (!($process = (Get-Process | ? {$_.MainWindowTitle -like $WinTitle}))) {
             SLEEP 0.5
         }
-    }
+        [WindowController]::FocusWindow($process.MainWindowHandle);
 
-    if ($HideWin) {
-        $signature = '[DllImport("user32.dll")]public static extern bool ShowWindowAsync(IntPtr hWnd, int nCmdShow);'
-        $showWindowAsync = Add-Type -MemberDefinition $signature -Name "Win32ShowWindowAsync" -Namespace Win32Functions -PassThru
-        $showWindowAsync::ShowWindowAsync($process.MainWindowHandle, 6)
-    }
+        if ($HideWin) {
+            [WindowController]::ShowWindowAsync($process.MainWindowHandle, [WindowShowStyle]::Minimize)
+        }
 
-    if ($CloseWin) {
-        While ($process = (Get-Process | ? {$_.MainWindowTitle -like $WinTitle})) {
-            $process.CloseMainWindow() | Out-Null
-            SLEEP 2.0
+        if ($CloseWin) {
+            While ($process = (Get-Process | ? {$_.MainWindowTitle -like $WinTitle})) {
+                $process.CloseMainWindow() | Out-Null
+                SLEEP 2.0
+            }
         }
     }
 }
