@@ -41,5 +41,5 @@ function RunAsync {
     }
 }
 
-#メモ
-#Get-Process | Where-Object {$_.MainWindowTitle} | Format-Table MainWindowTitle
+# メモ
+# Get-Process | ? {$_.MainWindowTitle} | Format-Table MainWindowTitle
