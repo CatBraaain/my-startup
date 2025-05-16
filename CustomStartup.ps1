@@ -7,6 +7,5 @@ RunAsync "C:\Program Files\obs-studio\bin\64bit\obs64.exe" "--startreplaybuffer 
 # RunAsync "C:\Users\PRO\AppData\Local\Programs\Rakuten\Rakuten Link.exe" -WinTitle "Rakuten Link" -CloseWin
 RunAsync "explorer.exe" -WinTitle "PC"
 RunAsync "Code" "C:\Users\PRO\Documents\TasksTodo" -WinTitle "*TasksTodo - Visual Studio Code" -Options "-WindowStyle Hidden"
-RunAsync "Code" "C:\Projects\meigen-py" -WinTitle "*meigen-py - Visual Studio Code" -Options "-WindowStyle Hidden"
-# RunAsync "Code" "C:\Projects\google-colabor" -WinTitle "*google-colabor - Visual Studio Code" -Options "-WindowStyle Hidden"
+RunAsync "Code" "C:\Projects\meigen-react" -WinTitle "*meigen-react - Visual Studio Code" -Options "-WindowStyle Hidden"
 RunAsync "C:\Program Files\Google\Chrome\Application\chrome.exe" -WinTitle "* - Google Chrome"
